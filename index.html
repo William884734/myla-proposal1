@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>💖 William’s Proposal for Myla 💖</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* clean responsive font */
+  text-align: center;
+  position: relative;
+  padding: 10px;
+}
+
+h1 {
+  color: white;
+  font-size: 6vw; /* responsive for phones & tablets */
+  max-font-size: 48px;
+  text-shadow: 2px 2px 10px rgba(255, 20, 147, 0.8);
+  margin-bottom: 20px;
+  animation: fadeIn 1.5s ease-in-out;
+  z-index: 2;
+}
+
+img {
+  width: 400px; 
+  max-width: 90%;
+  border-radius: 20px;
+  border: 4px solid white;
+  box-shadow: 0 0 25px rgba(255, 105, 180, 0.8);
+  margin-bottom: 20px;
+  z-index: 2;
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+  z-index: 2;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+button {
+  font-size: 4vw; /* responsive button font */
+  min-font-size: 16px;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 4px 10px rgba(255, 20, 147, 0.3);
+}
+
+#yesBtn { background-color: #ff1493; color: white; }
+#yesBtn:hover { background-color: #ff69b4; transform: scale(1.1); }
+#noBtn { background-color: white; color: #ff1493; position: relative; }
+#noBtn:hover { transform: rotate(10deg); }
+
+.heart {
+  position: absolute;
+  color: #fff;
+  font-size: 5vw; /* responsive heart size */
+  max-font-size: 40px;
+  min-font-size: 20px;
+  opacity: 0.8;
+  animation: float 6s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh) scale(1); opacity: 0.8; }
+  100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 20px #fff, 0 0 40px #ff69b4; }
+  50% { text-shadow: 0 0 30px #fff, 0 0 60px #ff1493; }
+}
+
+footer {
+  position: absolute;
+  bottom: 10px;
+  color: white;
+  font-size: 3vw; /* responsive footer */
+  max-font-size: 16px;
+  opacity: 0.8;
+  z-index: 2;
+}
+
+@media (max-width: 600px) {
+  img { width: 70vw; }
+  button { font-size: 5vw; padding: 0.8em 1.5em; }
+  .heart { font-size: 8vw; }
+}
+</style>
+</head>
+<body>
+
+<img src="mylalalal.jpg" alt="Myla" id="mainImg" />
+<h1 id="mainText">Myla, will you be my girlfriend? 💖</h1>
+
+<div class="buttons" id="buttonContainer">
+  <button id="yesBtn">Yes 💕</button>
+  <button id="noBtn">No 😢</button>
+</div>
+
+<div id="celebration" style="display:none; text-align:center;"></div>
+
+<!-- Audio kept in DOM -->
+<audio id="bgm" loop>
+  <source src="song_starting_3_05.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<footer>Made with 💖 by William for Myla</footer>
+
+<script>
+const noBtn = document.getElementById('noBtn');
+const yesBtn = document.getElementById('yesBtn');
+const bgm = document.getElementById('bgm');
+
+// No button dodging
+noBtn.addEventListener('mouseover', () => {
+  const x = Math.random() * (window.innerWidth - noBtn.clientWidth - 30);
+  const y = Math.random() * (window.innerHeight - noBtn.clientHeight - 30);
+  noBtn.style.position = 'absolute';
+  noBtn.style.left = `${x}px`;
+  noBtn.style.top = `${y}px`;
+});
+
+// Yes button triggers music + celebration
+yesBtn.addEventListener('click', () => {
+  // Play music reliably
+  bgm.play().catch(err => console.log('Audio play blocked:', err));
+
+  // Hide main content
+  document.getElementById('mainImg').style.display = 'none';
+  document.getElementById('mainText').style.display = 'none';
+  document.getElementById('buttonContainer').style.display = 'none';
+
+  // Show celebration
+  const celebration = document.getElementById('celebration');
+  celebration.style.display = 'block';
+  celebration.innerHTML = `
+    <h1 style="animation: glow 1.5s ease-in-out infinite; color:white;">
+      Yay!! 💞 Congratulations, Myla and William now are a couple and counting upcoming days tgt 💐
+    </h1>
+    <img src="IMG_0414.jpg" alt="Happy Couple" style="animation: fadeIn 2s ease-in-out; width:400px; border-radius:20px; border:4px solid white; margin-top:20px;">
+    <p style="color:white; font-size:1.4em; margin-top:20px;">
+      Myla, thank you for trusting me again. I promise with all my heart that I’ll never let you down for giving me this chance. I’ll keep striving to be the boyfriend you deserve, and I truly want us to last forever. These aren’t just words — I mean every single one. I never want to lose you; I want to spend every day and every night by your side, building a lifetime together, my love. 💘
+    </p>
+  `;
+});
+
+// Floating hearts
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
+  heart.innerHTML = '💖';
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.fontSize = 20 + Math.random() * 25 + 'px';
+  heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}
+setInterval(createHeart, 400);
+</script>
+
+</body>
+</html>
